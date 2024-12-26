@@ -1,6 +1,6 @@
 {
     "governors": [
-        { "id": 1, "name": "Yosief TEsfay", "status": "active", "colonyId": 1 },
+        { "id": 1, "name": "Yosief Tesfay", "status": "active", "colonyId": 1 },
         { "id": 2, "name": "Awet Milkias", "status": "active", "colonyId": 2 },
         { "id": 3, "name": "Abel Teklu ", "status": "inactive", "colonyId": 3 }
     ],
