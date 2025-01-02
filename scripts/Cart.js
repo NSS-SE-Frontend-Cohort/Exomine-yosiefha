@@ -1,16 +1,8 @@
-export const addMineralToCart = async (mineral) => {
-    const response = await fetch("http://localhost:8088/selectedMineralsCart", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(mineral)
-    });
-    return response.ok;
-};
+// Function to update the Space Cart display in the UI
 export const updateSpaceCart = () => {
     const cart = document.getElementById("space-cart");
-    cart.innerHTML = ""; // Clear current cart
-    // Assuming state is updated in `purchaseMineral`
+    cart.innerHTML = "";
     const cartItem = document.createElement("div");
-    cartItem.textContent = "Mineral added to cart successfully!";
+    cartItem.textContent = "";
     cart.appendChild(cartItem);
 };

@@ -5,40 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exomine</title>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+
     <header class="header">
         <h1 class="title">Solar System Mining Marketplace</h1>
     </header>
 
+   
+    <!-- Message Container -->
+    <div id="message-container" class="message-container"></div>
+
     <main id="container">
-        <section>
-            <h2>Select Governor</h2>
-            <select id="governor-select">
-                <option value="">--Select Governor--</option>
-            </select>
-        </section>
-
-        <section>
-            <h2>Select Facility</h2>
-            <select id="facility-select" disabled>
-                <option value="">--Select Facility--</option>
-            </select>
-        </section>
-
-        <section>
-            <h2>Available Minerals</h2>
-            <div id="minerals-list"></div>
-        </section>
-
-        <section>
-            <h2>Space Cart</h2>
-            <div id="space-cart"></div>
-        </section>
-    </main>
-
-    <script type="module" src="scripts/main.js"></script>
+        <div class="grid-container">
+            <section id="governor-section" class="grid-item">
+                <div class="form-row">
+                    <label for="governor-select">Select Governor:</label>
+                    <select id="governor-select">
+                        <option value="" disabled selected>Select a Governor</option>
+                    </select>
+                </div>
+            
+                <!-- Facility Row -->
+                <div class="form-row">
+                    <label for="facility-select">Select Facility:</label>
+                    <select id="facility-select" disabled>
+                        <option value="" disabled selected>Select a Facility</option>
+                    </select>
+                </div>
+            </section>
+            <section id="purchased-section" class="grid-item">
+                <h2 id = "colony"></h2>
+                <ul id="purchased-items">
+                    
+                </ul>
+            </section>
     
+           
+    
+            <section id="minerals-section" class="grid-item">
+                <h2 id="minerals-heading">Facility Mineral</h2>
+                <div id="minerals-list"></div>
+                
+            </section>
+    
+            <section class="grid-item">
+                <h2>Space Cart</h2>
+                <h1  id="space-cart"></h1>
+                <button id="purchase-button" disabled>Purchase Mineral</button>
+                
+            </section>
+        </div>
+    </main>
+    
+
+    <script type="module" src="./scripts/main.js"></script>
 
 </body>
 </html>

@@ -1,24 +1,106 @@
 {
-    "governors": [
-        { "id": 1, "name": "Yosief Tesfay", "status": "active", "colonyId": 1 },
-        { "id": 2, "name": "Awet Milkias", "status": "active", "colonyId": 2 },
-        { "id": 3, "name": "Abel Teklu ", "status": "inactive", "colonyId": 3 }
-    ],
-    "colonies": [
-        { "id": 1, "name": "Mars Colony", "inventory": [{ "mineralId": 1, "quantity": 5 }] },
-        { "id": 2, "name": "Europa Base", "inventory": [{ "mineralId": 2, "quantity": 10 }] },
-        { "id": 3, "name": "Lunar Outpost", "inventory": [] }
-    ],
-    "facilities": [
-        { "id": 1, "name": "Asmara Alpha Mine", "status": "active" },
-        { "id": 2, "name": "Bisha Extraction Site", "status": "inactive" },
-        { "id": 3, "name": "Zara mining sitel", "status": "active" }
-    ],
-    "minerals": [
-        { "id": 1, "name": "Iron", "facilityId": 1, "quantity": 50 },
-        { "id": 2, "name": "Gold", "facilityId": 3, "quantity": 0 },
-        { "id": 3, "name": "Copper", "facilityId": 1, "quantity": 100 },
-        { "id": 4, "name": "Magnesium", "facilityId": 3, "quantity": 30 }
-    ],
-    "selectedMineralsCart": [] 
+  "governors": [
+    {
+      "id": "1",
+      "name": "Yosief Tesfay",
+      "status": "active",
+      "colonyId": 1
+    },
+    {
+      "id": "2",
+      "name": "Awet Milkias",
+      "status": "active",
+      "colonyId": 2
+    },
+    {
+      "id": "3",
+      "name": "Abel Teklu ",
+      "status": "inactive",
+      "colonyId": 3
+    }
+  ],
+  "colonies": [
+    {
+      "id": "1",
+      "name": "Mars Colony",
+      "inventory": [
+        {
+          "mineralId": "1",
+          "quantity": 25
+        },
+        {
+          "mineralId": "2",
+          "quantity": 29
+        },
+        {
+          "mineralId": "3",
+          "quantity": 58
+        },
+        {
+          "mineralId": "4",
+          "quantity": 21
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Europa Mineral",
+      "inventory": [
+        {
+          "mineralId": "2",
+          "quantity": 10
+        }
+       
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Earth Mineral",
+      "inventory": []
+    }
+  ],
+  "facilities": [
+    {
+      "id": "1",
+      "name": "Asmara Alpha Mine",
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "name": "Bisha Extraction Site",
+      "status": "inactive"
+    },
+    {
+      "id": "3",
+      "name": "Zara mining sitel",
+      "status": "active"
+    }
+  ],
+  "minerals": [
+    {
+      "id": "1",
+      "name": "Iron",
+      "facilityId": 1,
+      "quantity": 100
+    },
+    {
+      "id": "2",
+      "name": "Gold",
+      "facilityId": 3,
+      "quantity": 50
+    },
+    {
+      "id": "3",
+      "name": "Copper",
+      "facilityId": 1,
+      "quantity": 40
+    },
+    {
+      "id": "4",
+      "name": "Magnesium",
+      "facilityId": 3,
+      "quantity": 30
+    }
+  ],
+  "selectedMineralsCart": []
 }
