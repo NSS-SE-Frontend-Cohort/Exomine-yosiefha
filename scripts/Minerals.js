@@ -1,3 +1,6 @@
+import { state} from "./TransientState.js";
+
+
 // Fetch minerals for a specific facility
 export const fetchMinerals = async (facilityId) => {
   // Fetch minerals from the server filtered by facility ID
@@ -56,6 +59,13 @@ export const fetchAllMinerals = async () => {
       console.error("Error fetching minerals:", error); // Log any errors encountered
       return []; // Return an empty array in case of an error
   }
+};
+// Sets the selected mineral and dispatches a state change event
+export const setMineral = async  (mineralId) => {
+    state.selectedMineral = mineralId; // Update the state with the selected mineral
+
+    // Dispatch a custom event to signal state change
+    document.dispatchEvent(new CustomEvent("stateChanged"));
 };
 
   

@@ -1,13 +1,12 @@
-import { fetchGovernors, updateGovernorSelect} from "./Governor.js";
-import { fetchFacilities, updateFacilitySelect } from "./Facilities.js";
-import { fetchMinerals, updateMineralsList } from "./Minerals.js";
-import { updateSpaceCart } from "./Cart.js";
-import { setGovernor, setFacility, setMineral, purchaseMineral,refreshPurchasedItems,state} from "./TransientState.js";
+import { fetchGovernors, updateGovernorSelect,setGovernor} from "./Governor.js";
+import { fetchFacilities, updateFacilitySelect , setFacility} from "./Facilities.js";
+import { fetchMinerals, updateMineralsList ,setMineral} from "./Minerals.js";
+import { purchaseMineral,refreshPurchasedItems,state} from "./TransientState.js";
+
 
 // Fetch governors and populate the dropdown
 fetchGovernors()
   .then(governors => {
-    console.log("Governors data:", governors);
     updateGovernorSelect(governors); // Populate the governor dropdown with data
   })
   .catch(error => console.error("Error initializing governors:", error)); // Handle any errors during fetching governors
@@ -39,23 +38,39 @@ document.getElementById("minerals-list").addEventListener("change", (event) => {
   }
 });
 
-// Event listener for purchase button click
+// Listener for the purchase button click event
 document.addEventListener("click", async (event) => {
   if (event.target.id === "purchase-button") {
     await purchaseMineral(); // Handle the purchase action
-    updateSpaceCart(); // Update the space cart UI
 
-    // Refresh purchased-items to reflect updated inventory
-    const governorId = document.getElementById("governor-select").value; // Get the selected governor
-    refreshPurchasedItems(governorId); // Update the purchased items list
-
-    // Re-fetch and update minerals for the selected facility
-    const facilityId = state.selectedFacility; // Retrieve selected facility from state
-    const minerals = await fetchMinerals(facilityId); // Fetch updated minerals
-    updateMineralsList(minerals); // Refresh minerals list UI
+    // Dispatch a custom event to notify the rest of the application
+    const purchaseEvent = new CustomEvent("purchaseCompleted", {
+      detail: {
+        selectedGovernor: document.getElementById("governor-select").value,
+        selectedFacility: state.selectedFacility,
+      },
+    });
+    document.dispatchEvent(purchaseEvent);
 
     // Re-enable the purchase button for new selections
     document.getElementById("purchase-button").disabled = true;
   }
 });
 
+// Listener for the custom purchaseCompleted event
+document.addEventListener("purchaseCompleted", async (event) => {
+  const { selectedGovernor, selectedFacility } = event.detail;
+
+  // Refresh the purchased items list
+  if (selectedGovernor) {
+    refreshPurchasedItems(selectedGovernor);
+  }
+
+  // Update the minerals list for the selected facility
+  if (selectedFacility) {
+    const minerals = await fetchMinerals(selectedFacility);
+    updateMineralsList(minerals);
+  }
+
+  console.log("Purchase event handled and UI updated.");
+});

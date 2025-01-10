@@ -1,3 +1,5 @@
+import { state} from "./TransientState.js";
+
 // Function to fetch the list of active facilities
 export const fetchFacilities = async () => {
     // Send a GET request to the API endpoint for facilities with active status
@@ -27,4 +29,14 @@ export const updateFacilitySelect = (facilities) => {
         // Add the option to the facility dropdown
         facilitySelect.appendChild(option);
     });
+};
+
+// Sets the selected facility and updates the minerals heading
+export const setFacility = async (facilityId, facilityName) => {
+    const mineralsHeading = document.getElementById('minerals-heading');
+    mineralsHeading.textContent = `Facility Minerals for ${facilityName}`; // Update the minerals heading
+    state.selectedFacility = facilityId; // Update the state with the selected facility
+
+    // Dispatch a custom event to signal state change
+    document.dispatchEvent(new CustomEvent("stateChanged"));
 };

@@ -1,3 +1,7 @@
+import { state} from "./TransientState.js";
+
+
+
 export async function fetchColonyInventory(colonyId) {
   try {
     const response = await fetch('http://localhost:8088/colonies');
@@ -161,3 +165,14 @@ function displayMessage(message, type) {
   messageContainer.appendChild(messageElement);
   setTimeout(() => messageContainer.removeChild(messageElement), 5000);
 }
+
+// Sets the selected governor and updates the colony heading
+export const setGovernor = async (governorId) => {
+  state.selectedGovernor = governorId; // Update the state with the selected governor
+  const colony = await getColonyForGovernor(governorId); // Fetch the colony associated with the governor
+  const colonyHeading = document.getElementById('colony'); 
+  colonyHeading.textContent = `Colony: ${colony.name}`; // Update the UI with the colony name
+
+  // Dispatch a custom event to signal state change
+  document.dispatchEvent(new CustomEvent("stateChanged"));
+};

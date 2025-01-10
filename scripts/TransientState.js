@@ -20,35 +20,6 @@ export const state = {
     selectedMineral: null,
 };
 
-// Sets the selected governor and updates the colony heading
-export const setGovernor = async (governorId) => {
-    state.selectedGovernor = governorId; // Update the state with the selected governor
-    const colony = await getColonyForGovernor(governorId); // Fetch the colony associated with the governor
-    const colonyHeading = document.getElementById('colony'); 
-    colonyHeading.textContent = `Colony: ${colony.name}`; // Update the UI with the colony name
-
-    // Dispatch a custom event to signal state change
-    document.dispatchEvent(new CustomEvent("stateChanged"));
-};
-
-// Sets the selected facility and updates the minerals heading
-export const setFacility = async (facilityId, facilityName) => {
-    const mineralsHeading = document.getElementById('minerals-heading');
-    mineralsHeading.textContent = `Facility Minerals for ${facilityName}`; // Update the minerals heading
-    state.selectedFacility = facilityId; // Update the state with the selected facility
-
-    // Dispatch a custom event to signal state change
-    document.dispatchEvent(new CustomEvent("stateChanged"));
-};
-
-// Sets the selected mineral and dispatches a state change event
-export const setMineral = async  (mineralId) => {
-    state.selectedMineral = mineralId; // Update the state with the selected mineral
-
-    // Dispatch a custom event to signal state change
-    document.dispatchEvent(new CustomEvent("stateChanged"));
-};
-
 // Function to update the purchased-items element
 export async function refreshPurchasedItems(governorId) {
     if (!governorId) {
@@ -139,9 +110,11 @@ export const purchaseMineral = async () => {
         });
 
         // Update UI and state
-        await refreshPurchasedItems(selectedGovernor);
-        await updateMineralsList(selectedFacility);
-        document.dispatchEvent(new CustomEvent("stateChanged"));
+        // await refreshPurchasedItems(selectedGovernor);
+        // await updateMineralsList(selectedFacility);
+        // document.dispatchEvent(new CustomEvent("stateChanged"));
+        const purchaseEvent = new CustomEvent('purchaseEvent', { detail: { selectedFacility, selectedGovernor } });
+        document.dispatchEvent(purchaseEvent);
 
         console.log("Mineral purchased successfully!");
     } catch (error) {
